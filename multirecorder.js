@@ -1,4 +1,4 @@
-/* 
+/*
   This library is based on https://github.com/mattdiamond/Recorderjs
 
   This library is used for recording audio from a microphone, using HTML5 APIs.
@@ -23,7 +23,7 @@
 */
 (function(window) {
 
-  var WORKER_PATH = "multirecorder-worker.js";
+  var WORKER_PATH = "./multirecorder-worker.js";
 
   var Recorder = function(source, cfg) {
 
@@ -166,6 +166,7 @@
     var audioContext;
     var source;
     var currentRecording;
+    config = config || {};
 
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     navigator.getUserMedia = navigator.getUserMedia ||
@@ -184,7 +185,7 @@
 
       function startRecordingForReal() {
         currentRecording = new Recorder(source,
-          {workerPath: config.workerPath});
+          {workerPath: config.workerPath || WORKER_PATH});
 
         if (delaySeconds) {
           var delayTimer = window.setInterval(function() {

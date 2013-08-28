@@ -230,7 +230,8 @@
     this.combineRecordings = function(recordings) {
       var deferred = jQuery.Deferred();
       // This recorder is only used for its encoding functionality
-      var combined = new Recorder(source);
+      var combined = new Recorder(source,
+        {workerPath: config.workerPath || WORKER_PATH});
       combined.combineRecordings(function() {
         deferred.resolve(combined);
         }, recordings);
